@@ -11,4 +11,6 @@ interface IBookingQueryRepository
     public function getPotentialJobIdsWithUserId($user_id);
     public function getPotentialTranslators(Job $job);
     public function checkParticularJob($user_id, $item);
+
+    public function getJob($id);
 }

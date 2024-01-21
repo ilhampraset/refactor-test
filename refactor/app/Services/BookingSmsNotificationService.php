@@ -1,14 +1,25 @@
 <?php
 
-class BookingSmsNotificationService implements IBookingSendNotificationService {
+namespace DTApi\Services;
+use HasJobData;
+use IBookingSendNotificationService;
+use INotifier;
+use Job;
+use User;
+use UsersBlacklist;
+
+class BookingSmsNotificationService implements IBookingSendNotificationService
+{
 
     use HasJobData;
-    private  INotifier $notifier;
+
+    private INotifier $notifier;
 
     public function __construct(INotifier $notifier)
     {
         $this->notifier = $notifier;
     }
+
     public function sendNotification($data)
     {
         $job = Job::find($data['jobid']);
@@ -38,20 +49,14 @@ class BookingSmsNotificationService implements IBookingSendNotificationService {
                 $translator_level[] = 'Certified';
                 $translator_level[] = 'Certified with specialisation in law';
                 $translator_level[] = 'Certified with specialisation in health care';
-            }
-            elseif($job->certified == 'law' || $job->certified == 'n_law')
-            {
+            } elseif ($job->certified == 'law' || $job->certified == 'n_law') {
                 $translator_level[] = 'Certified with specialisation in law';
-            }
-            elseif($job->certified == 'health' || $job->certified == 'n_health')
-            {
+            } elseif ($job->certified == 'health' || $job->certified == 'n_health') {
                 $translator_level[] = 'Certified with specialisation in health care';
-            }
-            else if ($job->certified == 'normal' || $job->certified == 'both') {
+            } else if ($job->certified == 'normal' || $job->certified == 'both') {
                 $translator_level[] = 'Layman';
                 $translator_level[] = 'Read Translation courses';
-            }
-            elseif ($job->certified == null) {
+            } elseif ($job->certified == null) {
                 $translator_level[] = 'Certified';
                 $translator_level[] = 'Certified with specialisation in law';
                 $translator_level[] = 'Certified with specialisation in health care';

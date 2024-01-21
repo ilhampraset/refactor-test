@@ -1,8 +1,16 @@
 <?php
 
-class BookingPushNotificationService implements IBookingSendNotificationService{
+namespace DTApi\Services;
+use IBookingSendNotificationService;
+use INotifier;
+use Job;
+use TeHelper;
+use User;
 
-    private  INotifier $notifier;
+class BookingPushNotificationService implements IBookingSendNotificationService
+{
+
+    private INotifier $notifier;
 
     public function __construct(INotifier $notifier)
     {

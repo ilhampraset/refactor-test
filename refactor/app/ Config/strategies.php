@@ -1,5 +1,8 @@
 <?php
 
+use DTApi\Services\BookingStoreEmailService;
+use DTApi\Services\BookingStoreService;
+
 return [
     'store_context' => [
         'store_booking' => BookingStoreService::class,

@@ -1,18 +1,31 @@
 <?php
 
+namespace DTApi\Services;
+
+use Event;
+use HasJobData;
+use IBookingCommandRepository;
+use Job;
+use JobWasCreated;
+use Mail;
 use Services\IBookingStoreService;
 
-class BookingStoreEmailService implements IBookingStoreService{
+class BookingStoreEmailService implements IBookingStoreService
+{
 
     use HasJobData;
-    private IBookingCommandRepository  $bookingRepository;
-    public function __construct(IBookingCommandRepository  $bookingRepository) {
+
+    private IBookingCommandRepository $bookingRepository;
+
+    public function __construct(IBookingCommandRepository $bookingRepository)
+    {
         $this->bookingRepository = $bookingRepository;
     }
+
     public function store($data): array
     {
         $userType = $data['user_type'];
-        $jobId = $data['user_email_job_id']??0;
+        $jobId = $data['user_email_job_id'] ?? 0;
         $job = Job::find($jobId);
 
         $this->processJobDetails($job, $data);

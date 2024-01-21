@@ -5,4 +5,8 @@ interface IBookingService {
     public function getUsersJobsHistory($user_id, $page);
 
     public function getAll($request);
+
+    public function feedDistance($data);
+
+    public function cancelJob($data);
 }

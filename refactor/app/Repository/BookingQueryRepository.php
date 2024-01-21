@@ -108,6 +108,10 @@ class BookingQueryRepository extends BaseRepository implements IBookingQueryRepo
         return $users;
 
     }
+
+    public function getJob($id) {
+       return $this->bookingQueryRepository->find($id);
+    }
     public function checkParticularJob($user_id, $item) {
         return \Job::checkParticularJob($user_id, $item);
     }

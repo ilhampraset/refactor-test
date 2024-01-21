@@ -1,8 +1,13 @@
 <?php
 
-use Services\IBookingStoreService;
+namespace DTApi\Services;
 
-class BookingStoreService implements IBookingStoreService {
+use Carbon;
+use Services\IBookingStoreService;
+use TeHelper;
+
+class BookingStoreService implements IBookingStoreService
+{
     private $userRepository;
     private $bookingCommandRepository;
 
@@ -12,7 +17,8 @@ class BookingStoreService implements IBookingStoreService {
         $this->bookingCommandRepository = $bookingCommandRepository;
     }
 
-    public function store($data) {
+    public function store($data)
+    {
         $user = $this->userRepository->find($data['user_id']);
         $immediatetime = 5;
         $result = [
