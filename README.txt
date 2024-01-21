@@ -43,3 +43,6 @@ OR
 Thank you!
 
 
+Here my explanation about this test case : https://volcano-citrus-4fe.notion.site/Digital-Tolk-Test-4c2745b0d64a42b0a1d24aa5c2ed650a
+
+
